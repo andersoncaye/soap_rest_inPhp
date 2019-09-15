@@ -5,7 +5,7 @@
     # definicções básicas sobre base de dados
     $_config['app_name'] = 'Webservice UserManagerAPI';
     //$_config['url']      = 'http://localhost/webservice/';
-    $_config['url']      = 'http://localhost/phpmyadmin/index.php?token=c8d890fb75fd031d7d889cbd56d1ee20';
+    $_config['url']      = 'http://localhost/phpmyadmin/rest.php?token=c8d890fb75fd031d7d889cbd56d1ee20';
     $_config['dbhost']   = 'localhost';
     $_config['dbname']   = 'rest_ws';
     $_config['dbuser']   = 'root';

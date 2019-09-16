@@ -36,6 +36,7 @@
 		//$nome = $app->request()->getBody();
         $temp = $app->request()->headers->all();
         $nome = json_encode($temp);
+        //echo $nome;
         $nome = json_decode($nome);
 
 		$return = array('ERRO' => 'ERRO' );

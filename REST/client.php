@@ -6,9 +6,9 @@
 
 
 		if ($GET) {
-			$curl = curl_init("http://localhost/SYSCoffe/soap_rest_inPhp/REST//rest.php/usuario/" . $dados);
+			$curl = curl_init("http://localhost/SYSCoffe/soap_rest_inPhp/REST/rest.php/usuario/" . $dados);
 		} else {
-			$curl = curl_init("http://localhost/SYSCoffe/soap_rest_inPhp/REST//rest.php/usuario");
+			$curl = curl_init("http://localhost/SYSCoffe/soap_rest_inPhp/REST/rest.php/usuario");
 		}
 
 
@@ -19,9 +19,10 @@
 		if (!$GET) curl_setopt($curl, $meta, $tipo);
 		if (!$GET) curl_setopt($curl, CURLOPT_POSTFIELDS, $dados);
 
-		//curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
+        //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: text/html', 'Content-Type: text/html'));
 
-		$curl_response = curl_exec($curl);
+        $curl_response = curl_exec($curl);
 		curl_close($curl);
 
 		return $curl_response;
@@ -53,28 +54,25 @@
 
         $json_str = json_encode($array_temp);
 
-        echo $json_str;
-
+        echo $json_str."<br>";
+        $array = json_decode($json_str);
 		switch ($_POST['metodo']) {
 			case 'GET':
 				$retorno = curl($id,"","",true);
 				break;
 			case 'POST':
-				$retorno = curl($json_str,"POST",CURLOPT_POST);
+				$retorno = curl($json_str,"POST", CURLOPT_POST);
 				break;
 			case 'PUT':
 				$retorno = curl($json_str,"PUT",CURLOPT_CUSTOMREQUEST);
 				break;
 			case 'DELETE':
-				$retorno = curl($json_str,"DELETE",CURLOPT_CUSTOMREQUEST);
+				$retorno = curl($id,"DELETE",CURLOPT_CUSTOMREQUEST);
 				break;
 		
 		}
 
 	}
-
-
-
 ?>
 
 <!DOCTYPE HTML>

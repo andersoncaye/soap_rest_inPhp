@@ -123,9 +123,14 @@
         'encoded',
         'Deletando informações na base de dados usando NuSOAP PHP'
     );
+//    Para o Php 5
+//    $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
+//    $servidor->service($HTTP_RAW_POST_DATA);
 
-    $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
-    $servidor->service($HTTP_RAW_POST_DATA);
+//    Para o Php 7
+    $postdata = file_get_contents("php://input");
+    $servidor->service($postdata);
+
 
 
 ?>

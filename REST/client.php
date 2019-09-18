@@ -11,12 +11,17 @@
 			$curl = curl_init("http://localhost/SYSCoffe/soap_rest_inPhp/REST/rest.php/usuario");
 		}
 
-
+//        if ($GET) {
+//            $curl = curl_init("http://ws-aula.syscoffe.com.br/REST/rest.php/usuario/" . $dados);
+//        } else {
+//            $curl = curl_init("http://ws-aula.syscoffe.com.br/REST/rest.php/usuario");
+//        }
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 		/* PARA METODOS POST, PUT e DELETE */
 		if (!$GET) curl_setopt($curl, $meta, $tipo);
+        if (!$GET) curl_setopt($curl, $meta, $tipo);
 		if (!$GET) curl_setopt($curl, CURLOPT_POSTFIELDS, $dados);
 
         //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));

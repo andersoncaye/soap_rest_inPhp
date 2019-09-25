@@ -11,15 +11,23 @@
     $retorno = '';
     $json_array = 'json/array';
 
-	function cul($dados="",$tipo="",$meta="",$GET=false, $url){
+	function cul($dados="",$tipo="",$meta="",$url,$GET=false){
 
-        if ($GET) { $curl = curl_init($url."/" . $dados); echo $url."/" . $dados;}
-        else { $curl = curl_init($url.''); }
+        if ($GET) { $curl = curl_init($url."/".$dados); echo $url."/".$dados;}
+        else { $curl = curl_init($url); }
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		/* PARA METODOS POST, PUT e DELETE */
 		if (!$GET) curl_setopt($curl, $meta, $tipo);
         if (!$GET) curl_setopt($curl, $meta, $tipo);
 		if (!$GET) curl_setopt($curl, CURLOPT_POSTFIELDS, $dados);
+        $headers = array(
+                'Accept: application/json',
+                'Accept-Encoding: gzip, deflate',
+                'Content-Length: 0',
+                'Connection: keep-alive',
+                'Content-type: application/json'
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         //curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
         $curl_response = curl_exec($curl);
 		curl_close($curl);
@@ -38,7 +46,7 @@
         switch ($_POST['metodo']) {
 			case 'GET':
 			    $id = json_decode($json_str);
-				$retorno = cul($id->id,"","",true, $url);
+				$retorno = cul($id->id,"","",$url,true);
 				break;
 			case 'POST':
 				$retorno = cul($array,"POST", CURLOPT_POST, $url);
